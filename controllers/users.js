@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('users').find({_id: userId});
+    const result = await mongodb.getDatabase().db().collection('users').find({ _id: userId });
     result.toArray().then((users) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(users[0]);
@@ -26,7 +26,7 @@ const createUser = async (req, res) => {
         name: req.body.name,
         ipaddress: req.body.ipaddress
     };
-    const response = await mongodb.db.getDatabase().db().collection('users').insertOne( user );
+    const response = await mongodb.getDatabase().db().collection('users').insertOne( user );
     if (response.acknowledged) {
         res.status(204).send();
     } else {
@@ -42,7 +42,7 @@ const updateUser = async (req, res) => {
         name: req.body.name,
         ipaddress: req.body.ipaddress
     };
-    const response = await mongodb.db.getDatabase().db().collection('users').replaceOne( { _id: userId }, user);
+    const response = await mongodb.getDatabase().db().collection('users').replaceOne( { _id: userId }, user);
     if (response.modifiedCount > 0 ) {
         res.status(204).send();
     } else {
@@ -52,7 +52,7 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.db.getDatabase().db().collection('users').removeOne( { _id: userId }, true);
+    const response = await mongodb.getDatabase().db().collection('users').deleteOne( { _id: userId });
     if (response.deletedCount > 0 ) {
         res.status(204).send();
     } else {
