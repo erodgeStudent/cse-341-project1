@@ -1,2 +1,27 @@
-###
+### get all users
+GET http://localhost:3000/users
 
+#### get user by id
+GET http://localhost:3000/users/653beaa297cc8a1aaa0396e7
+
+#### create user
+POST http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "test1@test.com",
+    "username": "test1@test.com",
+    "name": "Hello1",
+    "ipaddress": "94.121.163.63"
+}
+
+#### add user
+PUT http://localhost:3000/users/653beaa297cc8a1aaa0396e7 HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "test1@test.com",
+    "username": "test1@test.com",
+    "name": "NewHello1",
+    "ipaddress": "94.121.163.63"
+}
