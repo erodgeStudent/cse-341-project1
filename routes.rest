@@ -27,7 +27,6 @@ Content-Type: application/json
 }
 
 ###delete user
-
 PUT http://localhost:3000/users/6543e15f9af3b3ab918ba848
 
 ###
