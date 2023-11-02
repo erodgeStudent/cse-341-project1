@@ -11,6 +11,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+    //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('users').find({_id: userId});
     result.toArray().then((users) => {
@@ -20,6 +21,7 @@ const getSingle = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+    //#swagger.tags=['Users']
     const user = {
     
         email: req.body.email,
@@ -36,6 +38,7 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+    //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     const user = {
         email: req.body.email,
@@ -52,6 +55,7 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+    //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.db.getDatabase().db().collection('users').removeOne( { _id: userId }, true);
     if (response.deletedCount > 0 ) {
